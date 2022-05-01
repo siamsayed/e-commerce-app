@@ -1,0 +1,310 @@
+
+
+*{
+    font-family:monospace
+}
+
+
+.names{
+
+    display: flex;;
+
+}
+.name{
+    list-style: none;
+}
+h1,p{
+text-align: center;
+
+}
+.content{
+    height:100vh;
+    display: flex;;
+    flex-direction: column;;
+    align-items: center;
+    justify-content: center;
+}
+
+.product{
+    display: flex;
+    width:90%;
+    justify-content: center;
+    flex-wrap:wrap;
+    align-items: center;;
+    margin-left: 50%;
+    transform:translate(-50%);
+    z-index:-100;
+    
+    
+}
+.comment{
+    background: rgb(225, 225, 225);
+    margin-bottom: 4px;;
+    border-radius: 3px;
+    padding: 10px;
+}
+.userInfo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+.userInfo .userIcon{
+    font-size:1.5rem;
+    
+
+}
+.buy_btn{
+    text-decoration: none;
+    height: 30px;
+    width:50px;
+    background: rgb(236, 236, 236);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color:rgb(106, 187, 240);
+    font-weight:bold
+}
+.product_content{
+    width:250px;
+    height:300px;
+    
+    margin: 10px;;
+    border-radius:20px;
+    text-align:center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center;
+    flex-direction: column;
+    resize: both;
+    background-image: linear-gradient(190deg, rgba(137, 241, 255, 0.2),rgb(190, 223, 255));
+
+}
+.navigationLinks{
+    position:relative;
+    border:3px solid transparent;
+    
+    
+    
+}
+.item{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    margin-left: 40px;
+}
+
+
+    
+.footer,.header{
+    background-color: rgb(146, 146, 146);
+}
+
+.footer{
+    position: absolute;
+    width: 100%;;
+    
+}
+.navItem ul li a{
+    text-decoration:none;
+    color:gray;
+    font-size:1.5rem;
+    transition:.1s ease-in
+}
+.navItem ul li a:hover{
+    color:#0d6efd;
+    border-bottom: 3px solid #0d6efd;
+    
+}
+.navItem ul li{
+    list-style:none;
+    margin-left: 30px;
+
+}
+.navItem ul li:last-child a{
+    margin-left: 0;
+}
+.navItem ul{
+    display: flex;
+
+}
+.navItem{
+    float:right;
+    margin-top: 15px;
+}
+.BrandLogo{
+    font-size:2rem;
+
+}
+.BrandLogo{
+    text-decoration:none;
+
+}
+.NavBar{
+    display: flex;
+    width:80%;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+.bars{
+    font-size:2.5rem;
+    display: none;
+}
+.icons{
+    display: none;
+}
+.collapse a{
+    color:black;
+    text-decoration:none;
+    font-size:1.1rem;
+    margin-top:1px;
+}
+.navbar-expand-md .navbar-collapse{
+    justify-content: flex-end;
+}
+.navbar-expand-md .navbar-collapse a{
+    margin-left: 10px;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+.nameInput,.numberInput,.emailInput{
+    display: flex;
+    flex-direction: column;
+}
+.submitInput{
+    display: flex;
+    justify-content: center;
+    
+}
+.submitInput input[type=submit]{
+    width:100%;
+    border:1px solid rgb(186, 186, 186);
+    padding: 6px;
+    border-radius:5px
+
+}
+
+@media only screen and (max-width: 790px){
+    .bars{
+        display: block;
+        
+        
+    }
+
+    .navbar-expand-md .navbar-collapse{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .navbar-expand-md .navbar-collapse a{
+        font-size:1.3rem
+    }
+    .active{
+        display: flex;
+        flex-direction: column;
+        background: #000;
+        height:100vh;
+        width:100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: absolute;
+        left:50%;
+        transform: translate(-50%);
+        overflow: hidden;
+        margin:0;
+        padding:0;
+        animation: navbarShow 1s ease ;
+        transition:1s ease ;
+        z-index: 100;
+        position: absolute;
+        
+        
+        
+        
+        
+        
+    }
+    .cross{
+        z-index: 200;
+        animation :1s ease crossAnimation;
+        
+    }
+    .item{
+        display: block;
+        margin-top: 20px;
+        
+    }
+    .item .icon{
+        position: absolute;
+    left: 35%;
+    }
+    @keyframes navbarShow {
+        0%{
+            transform: translate(100%);
+            
+        }
+        100%{
+            transform:translate(-50%)
+        }
+    }
+    
+    @keyframes crossAnimation {
+        0%{
+            transform: rotate(180deg);
+        }
+        100%{
+            transform: rotate(0deg);
+        }
+    }
+    .navItem .nav-items{
+        display: none;
+        
+        
+    }
+    .navItem ul{
+        z-index: -200;
+        overflow: hidden;
+        
+    }
+    .NavBar{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position:relative;
+    
+    }
+    .icons{
+        display: block;
+        padding:10px 15px ;
+        border:2px solid #adadad;
+        border-radius:10px;
+        
+        transition:.1s ease;
+        
+
+    }
+    .icons:active{
+        border:4px solid #adadad;
+        
+        
+
+        
+    }
+    .icons svg{
+        font-size:2rem;
+        color:gray;
+        
+        z-index: 100;
+    }
+    
+    
+}
