@@ -2,7 +2,7 @@ import React from "react"
 import {useParams,Link} from "react-router-dom"
 import {Modal,Button,ModalBody,ModalFooter} from "reactstrap"
 import { BsFillPersonFill } from "react-icons/bs";
-
+import CommentForm from "./commentForm"
 let Products=(props)=>{
     document.title="MangaBD | Products"
     let {id}=useParams()
@@ -38,12 +38,14 @@ let Products=(props)=>{
                     <a  onClick={props.func} className="buy_btn" href={"/products/"+props.a.product_name}>Buy</a>
                     
                     <Modal isOpen={item}>
+                        
                         <ModalBody>
                             <h1>{props.a.product_name}</h1>
                             <p>{props.a.description}</p>
                             
 
                             <p>Price : {props.a.price} USD</p>
+                            <CommentForm/>
                             <div className="comments" >
                             <div className="commentsLength"  >comments ({arr!=null?arr.length:null})</div>
                                 {arr!=null ? arr.map(a=>{
@@ -57,6 +59,7 @@ let Products=(props)=>{
                                     )
                                 }): null}
                             </div>
+                            
                         </ModalBody>
                         <ModalFooter>
                             <Button onClick={toggle}>

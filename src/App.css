@@ -190,6 +190,10 @@ text-align: center;
     border-radius:5px
 
 }
+.mainForm{
+    display: flex;
+    flex-direction: column;
+}
 
 @media only screen and (max-width: 790px){
     .bars{
@@ -308,3 +312,4 @@ text-align: center;
     
     
 }
+

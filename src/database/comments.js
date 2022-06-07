@@ -1,4 +1,4 @@
-let Comments=[
+let comments=[
     {
         productId:1,
         id:1,
@@ -57,4 +57,4 @@ let Comments=[
     }
 ]
 
-export default Comments
+export default comments
