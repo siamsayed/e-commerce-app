@@ -34,11 +34,11 @@ class Header extends Component{
     </NavbarBrand>
     <NavbarToggler onClick={this.onclickChange} />
     <Collapse navbar isOpen={this.state.clickedNav}>
-      <Link to="/"> <div className="item"><GoHome  className="icon"/>Home</div></Link>
-      <Link to="/products"><div className="item"><AiOutlineShoppingCart  className="icon"/>Products</div></Link>
-      <Link to="/blogs"><div className="item"><BiConversation className="icon"/> Blogs</div></Link>
-      <Link to="/about"><div className="item"><MdExpandMore  className="icon"/> About</div></Link>
-      <Link to="signin-login"><div className="item"><VscSignIn className="icon"/>SignIn/LogIn</div></Link>
+      <Link to="/"> <div className="item"onClick={this.onclickChange}><GoHome  className="icon"/>Home</div></Link>
+      <Link to="/products"><div className="item"onClick={this.onclickChange}><AiOutlineShoppingCart  className="icon"/>Products</div></Link>
+      <Link to="/blogs"><div className="item"onClick={this.onclickChange}><BiConversation className="icon"/> Blogs</div></Link>
+      <Link to="/about"><div className="item"onClick={this.onclickChange}><MdExpandMore  className="icon"/> About</div></Link>
+      <Link to="signin-login"><div className="item"onClick={this.onclickChange}><VscSignIn className="icon"/>SignIn/LogIn</div></Link>
       
     </Collapse>
     

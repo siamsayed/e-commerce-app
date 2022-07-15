@@ -16,11 +16,7 @@ class  Home extends Component{
     
     componentDidMount(){
         console.log(this.props)
-        this.props.dispatch({
-            type:"STR",
-            name:"jonny deep"
-
-        })
+        
     }
     componentDidUpdate(){
         console.log("updated state : ", this.props)

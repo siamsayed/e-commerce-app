@@ -5,21 +5,24 @@ import comments from "../database/comments"
 let initialState={
         data:data,
         comments:comments,
-        name:"siam"
+        
 }
 
 let reducer=(state=initialState,action)=>{
- if(action.type==="STR"){
+ if(action.type==="ADD_COMMENT"){
+        console.log("payload",action.payload)
+        let comment=action.payload;
+        comment.id=state.comments.length+1
         return{
-                ...state,
-                name:action.name
-                
-       
+
+        ...state,
+        comments:state.comments.concat(action.payload)
         }
  }
- else{
-         return state
- }
+ 
+else{
+        return state
+}
 } 
 
 

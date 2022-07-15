@@ -1,68 +1,71 @@
-import React from "react"
+import React, { Component } from "react"
 import {useParams,Link} from "react-router-dom"
 import {Modal,Button,ModalBody,ModalFooter} from "reactstrap"
-import { BsFillPersonFill } from "react-icons/bs";
 import CommentForm from "./commentForm"
-let Products=(props)=>{
-    document.title="MangaBD | Products"
-    let {id}=useParams()
-    // console.log(id)
-    let {useState}=React
-    let [item,func]=useState(false)
-    let [arr,commentHandler]=useState(props.comments.filter(comment=>comment.productId === props.a.id ?  comment : null))
-    let [commentShow,commentShowFunc]=useState(false)
-    
-    
-    
-    
-    const toggle=()=>{
-        return (
-            func(!item) 
-            
-        )
+import {connect} from "react-redux"
+import CommentHandler from "./commentHandler"
+let propsFormRedux=(state)=>{
+  return{
+      comments:state.comments
+  }
+}
+class Products extends Component{
+    state={
+        itemIsOpen:false,
+        arr:this.props.comments.filter(comment=>comment.productId === this.props.a.id ?  comment : null),
+        updatedState:this.props.comments
+    }
+    toggle=()=>{
+        this.setState({
+            itemIsOpen:!this.state.itemIsOpen
+        })
     }
     
+    render(){
+    document.title="MangaBD | Products"
+   
+    
+    
+    
     
 
-
+        
     
-
     return(
         <>
         
         
-                <div className="product_content" onClick={toggle}>
+                <div className="product_content" onClick={this.toggle}>
                     
-                    <h1 className="productName">{props.a.product_name}</h1>
-                    <h4 className="productPrice">{props.a.price}</h4>
-                    <a  onClick={props.func} className="buy_btn" href={"/products/"+props.a.product_name}>Buy</a>
+                    <h1 className="productName">{this.props.a.product_name}</h1>
+                    <h4 className="productPrice">{this.props.a.price}</h4>
+                    <a  onClick={this.props.func} className="buy_btn" href={"/products/"+this.props.a.product_name}>Buy</a>
                     
-                    <Modal isOpen={item}>
+                    <Modal isOpen={this.state.itemIsOpen}>
                         
                         <ModalBody>
-                            <h1>{props.a.product_name}</h1>
-                            <p>{props.a.description}</p>
+                            <h1>{this.props.a.product_name}</h1>
+                            <p>{this.props.a.description}</p>
                             
 
-                            <p>Price : {props.a.price} USD</p>
-                            <CommentForm/>
+                            <p>Price : {this.props.a.price} USD</p>
+                            <CommentForm productId={this.props.a}/>
                             <div className="comments" >
-                            <div className="commentsLength"  >comments ({arr!=null?arr.length:null})</div>
-                                {arr!=null ? arr.map(a=>{
+                            <div className="commentsLength"  >comments ({this.state.arr!=null?this.state.arr.length:null})</div>
+                                {
+                                
+                                this.props.comments.map((a,i)=>{
                                     return(
-                                        <div className="comment"key={a.id}>
-                                        <div className="userInfo"><BsFillPersonFill className="userIcon"/>
-                                        <div className="authorName" style={{fontWeight:"bold"}}>{a.author}({a.ratings})</div></div>
-                                        <div className="commentContent">{a.comment}</div>
+                                        <CommentHandler commentDetail={this.props}arr={this.state.arr}a={a}items={this.props.a}key={i}/>
                                         
-                                        </div>
                                     )
-                                }): null}
+                                })
+                                }
                             </div>
                             
                         </ModalBody>
                         <ModalFooter>
-                            <Button onClick={toggle}>
+                            <Button onClick={this.toggle}>
                                 Exit
                             </Button>
                         </ModalFooter>
@@ -77,5 +80,6 @@ let Products=(props)=>{
         
         </>
     )
+                            }
 }
-export default Products 
+export default connect(propsFormRedux)(Products) 

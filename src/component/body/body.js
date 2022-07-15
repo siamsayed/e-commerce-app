@@ -25,6 +25,8 @@ class Body extends Component {
     clickedfunc=(e,i)=>{
         let item =this.state.data[i]
         this.setState({ clicked : item})
+
+        console.log(this.state.clicked)
         
 
     }
@@ -52,7 +54,7 @@ class Body extends Component {
                     return(
                         
                         <div  key={a.id} >
-                        <Products comments={this.state.comments} a={a}func={(e)=>this.clickedfunc(e,i)} data={this.state.data}/>
+                        <Products a={a}func={(e)=>this.clickedfunc(e,i)} data={this.state.data}/>
                         
                         </div>
                         
