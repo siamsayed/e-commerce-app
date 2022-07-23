@@ -12,7 +12,6 @@ class CommentHandler extends Component {
     
 
     render(){
-        console.log(this.props)
         
         
 

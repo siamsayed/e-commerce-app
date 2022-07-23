@@ -4,11 +4,16 @@ import {Modal,Button,ModalBody,ModalFooter} from "reactstrap"
 import CommentForm from "./commentForm"
 import {connect} from "react-redux"
 import CommentHandler from "./commentHandler"
+import { buySuccess } from "../../redux/actionTypes"
 let propsFormRedux=(state)=>{
   return{
       comments:state.comments
   }
 }
+
+
+
+
 class Products extends Component{
     state={
         itemIsOpen:false,
@@ -23,7 +28,7 @@ class Products extends Component{
     
     render(){
     document.title="MangaBD | Products"
-   
+    
     
     
     

@@ -12,7 +12,20 @@ import Product from "./product"
 import Form from "./form"
 import ContactUs from "./contactUs"
 import Comments from "../../database/comments"
+import Loader from "./loader"
+import { connect } from "react-redux"
+import { loader } from "../../redux/actionCreator"
 
+const propsFormRedux=(state)=>{
+        return{
+            data:state.data
+        }
+}
+
+
+const setDispatch=(dispatch)=>({
+    loader:()=>dispatch(loader())
+})
 class Body extends Component {
     
     state = {
@@ -26,21 +39,23 @@ class Body extends Component {
         let item =this.state.data[i]
         this.setState({ clicked : item})
 
-        console.log(this.state.clicked)
         
 
+    }
+    componentDidMount(){
+        this.props.loader()
     }
     
     
     
     render() {
-            
-        
 
+        
+        
         return(
             <>
             <Header/>
-            
+            <div className="Body">
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/About" element={<More/>}/>
@@ -50,7 +65,7 @@ class Body extends Component {
                 <>
                 
                 <div className="product">
-                {this.state.data.map((a,i)=>{
+                {this.props.data.loading==true? <Loader/>:this.props.data.data.map((a,i)=>{
                     return(
                         
                         <div  key={a.id} >
@@ -59,7 +74,12 @@ class Body extends Component {
                         </div>
                         
                     )
-                })}
+                })
+                
+                
+                
+                }
+                
                 </div>
                 </>
             
@@ -73,7 +93,9 @@ class Body extends Component {
                 <Route path="/signin-login" element={<Form/>}/>
                 <Route path="/contact-us" element={<ContactUs/>}/>
                 <Route path="*"element={<Navigate to="/"/>}/>
+                
             </Routes>
+            </div>
             <Footer/>
 
             </>
@@ -81,4 +103,4 @@ class Body extends Component {
     }
 }
 
-export default Body 
+export default connect(propsFormRedux,setDispatch)(Body) 

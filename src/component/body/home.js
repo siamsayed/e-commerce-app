@@ -14,16 +14,10 @@ const func=(state)=>{
 }
 class  Home extends Component{
     
-    componentDidMount(){
-        console.log(this.props)
-        
-    }
-    componentDidUpdate(){
-        console.log("updated state : ", this.props)
-    }
+    
     render(){
         document.title="MangaBD | Home"
-    
+        
     
         return(
             <div className="content">

@@ -1,29 +1,90 @@
 import data from "../database/data"
 import comments from "../database/comments"
+import { combineReducers } from "redux"
+import * as actionTypes from "./actionTypes"
 
 
-let initialState={
-        data:data,
-        comments:comments,
+
+
+// export const productRreducer=(state={loading:false,data:[]},action)=>{
+//         switch(action.type){
+//                 case actionTypes.pageLoading:
+//                         return{
+//                                 ...state,
+//                                 loading:true,
+//                                 data:[]
+
+//                 }
+//                 case actionTypes.pageLoaded :
+//                         return{
+//                                 ...state,
+//                                 loading:false,
+//                                 data:action.payload
+//                         }
+//                 default :
+//                 return state
+//         }
+
+
+// }
+
+// export const commentReducer=(state=comments,action)=>{
+//         switch(action.type){
+//                 case actionTypes.commentHandler:
+//                         let comment=action.payload;
+//                         comment.id=state.length+1;
+//                         return state.concat(comment)
+//                 default:
+//                         return state
+
+//         }
+// }
+
+
+
+// export const reducer=combineReducers({
+//         data:productRreducer,
+//         comments:commentReducer,
+// })
+
+
+
+export const productRreducer=(state={loading:false,data:[]},action)=>{
+        switch(action.type){
+                case actionTypes.pageLoading:
+                return{
+                        ...state,
+                        loading:true,
+                        data:[]
+                }
+                case actionTypes.pageLoaded:
+                return{
+                        ...state,
+                        loading:false,
+                        data:action.payload
+                }
+                default:
+                return state
+        }
         
 }
 
-let reducer=(state=initialState,action)=>{
- if(action.type==="ADD_COMMENT"){
-        console.log("payload",action.payload)
-        let comment=action.payload;
-        comment.id=state.comments.length+1
-        return{
-
-        ...state,
-        comments:state.comments.concat(action.payload)
+export const commentReducer=(state=comments,action)=>{
+        switch(action.type){
+                case actionTypes.commentHandler:
+                let newComment=action.payload;
+                newComment.id=state.length +1;
+                return state.concat(newComment)
+                default:
+                return state
         }
- }
- 
-else{
-        return state
 }
-} 
+        
 
 
-export default reducer
+export const reducer=combineReducers({
+       
+        data:productRreducer,
+        comments:commentReducer
+        
+})

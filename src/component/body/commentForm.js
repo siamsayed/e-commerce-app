@@ -2,24 +2,16 @@ import React, { Component } from 'react';
 import {Form, Input,Button} from "reactstrap"
 import {connect} from "react-redux"
 import data from "../../database/data"
+import {commentHandler} from "../../redux/actionTypes"
+import {addComments,loader} from "../../redux/actionCreator"
 
 
 
 
-
-let setDispatch=dispatch=>{
+let setDispatch=(dispatch)=>{
     return{
-        addComments:(productId,author,comment,rating)=>dispatch({
-            type:"ADD_COMMENT",
-            payload:{
-                productId:productId,
-                author:author,
-                comment:comment,
-                rating:rating
-
-            }
-
-        })
+        addComments:(productId,author,comment,rating)=>dispatch(addComments(productId,author,comment,rating)),
+        
     }
 }
 class CommentForm extends Component {
@@ -33,8 +25,8 @@ class CommentForm extends Component {
     submitFunc=(event)=>{
         event.preventDefault()
 
+        // this.props.addComments(this.props.productId.id,this.state.author[0],this.state.comment[0],this.state.rating[0])
         this.props.addComments(this.props.productId.id,this.state.author[0],this.state.comment[0],this.state.rating[0])
-        
         
         
 
@@ -45,6 +37,7 @@ class CommentForm extends Component {
         })
     }
     render() {
+
        
         return (
             <Form className='mainFrom' onSubmit={(event)=>this.submitFunc(event)}>
