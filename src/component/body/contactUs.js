@@ -1,63 +1,127 @@
 import React, { Component } from 'react'
+import {Form,LocalForm,Control, Errors,actions} from "react-redux-form"
+import { FormGroup, Button , Input,Label} from "reactstrap"
+import {connect} from "react-redux"
+
 
 class ContactUs extends Component {
-    constructor(props){
-        super(props)
-        this.state={
-            fullname:"",
-            phone: "",
-            email: "",
-            agree:false,
-
-        }
-
-
-    }
+    
     pushValues=(e)=>{
-        let val= e.target.type==="checkbox" ? e.target.checked : e.target.value
-        let name=e.target.name
-
-        console.log(name)
-        this.setState({
-            [name]:val
-        })
+        console.log(e)
         
-    }
-    submit=(e)=>{
-        e.preventDefault()
         
-        console.log(this.state)
-
     }
     render() {
-        document.title="MangaBD | ContactUs"
-        return (
-            <div className="content">
-                <h1 className="hedline-contact">Contact us </h1>
-                <form action="#" onSubmit={this.submit}>
-                <div className="nameInput">
-                    <label htmlFor="name">Fullname</label>
-                    <input onChange={this.pushValues}type="text" name="fullname"id="name" />
-                </div>
-                <div className="numberInput">
-                    <label htmlFor="phone">Phone</label>
-                    <input onChange={this.pushValues}type="number" name="phone" id="phone" />
-                </div>
-                <div className="emailInput">
-                    <label htmlFor="email">Email</label>
-                    <input onChange={this.pushValues}type="text" name="email" id="email" />
-                </div>
-                <div className="agreeItems">
-                    <input onChange={this.pushValues}type="checkbox" name="agree" id="agree" />
-                    <label htmlFor="agree">Agree to all of our term and conditions <a href="#">Read terms and conditions</a></label>
+        console.log(actions)
 
-                </div>
-                <div className="submitInput">
-                    <input onChange={this.pushValues}type="submit" value="submit" />
-                </div>
-                </form>
-            </div>
+        document.title="MangaBD | ContactUs"
+        const req =val=>val && val.length;
+        const phone=val=>!isNaN(Number(val));
+        const email=val=>/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(val)===true;
+        const checkbox=val=>val===true;
+        
+
+        return (
+            
+                
+
+
+                <Form model="formData" onSubmit={(e)=>this.pushValues(e)}>
+                    <FormGroup>
+                        <Label htmlFor='fullname'>Enter Name</Label>
+                        <Control.text
+                        model=".fullname"
+                        id='fullname'
+                        placeholder='Enter Name'
+                        className='form-control'
+                        validators={{
+                            req
+                        }}
+                        
+                        />
+                        <Errors
+                        model=".fullname"
+                        show="touched"
+                        messages={{
+                            req:"Enter your name frist"
+                        }}
+                        className="text-danger"
+
+                        />
+                    </FormGroup>
+
+                    <FormGroup>
+                        <Label
+                        htmlFor='phone'
+                        >Enter Phone</Label>
+                        <Control.text
+                        model=".phone"
+                        placeholder="phone number"
+                        id="phone"
+                        className='form-control'
+                        validators={{
+                            req,
+                            phone
+                        }}
+                        
+                        />
+                        <Errors
+                        model=".phone"
+                        show="touched"
+
+                        messages={{
+                            phone:"Enter your phone number first"
+                        }}
+                        className="text-danger"
+
+                        
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label htmlFor='email'>Enter E-mail</Label>
+                        <Control.text
+                        model=".email"
+                        id="email"
+                        className='form-control'
+                        placeholder='Enter email'
+                        validators={{
+                            req,
+                            email
+                        }}
+                        />
+                        <Errors
+                        model=".email"
+                        show="touched"
+
+                        messages={{
+                            email:"Enter valid email"
+                        }}
+                        className='text-danger'
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Control.checkbox
+                        model=".checkbox"
+                        validators={{
+                            checkbox
+                        }}
+
+                        />
+                        <Errors
+                        model=".checkbox"
+                        show="touched"
+
+                        messages={{
+                            checkbox:"Agree to our terms and conditions"
+                        }}
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <Button type='submit' color='primary'>submit</Button>
+                    </FormGroup>
+                </Form>
+            
         )
     }
 }
-export default ContactUs
+export default connect(null,null)(ContactUs)

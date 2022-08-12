@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { BsFillPersonFill } from "react-icons/bs";
 import {connect} from "react-redux"
-let propsFormRedux=(state)=>{
-    return{
-        comments:state.comments
-    }
-  }
+import { fetchData } from '../../redux/actionTypes';
+import { commentReducer } from '../../redux/reducer';
+import axios from "axios"
+let propsFormRedux=(dispatch)=>{
+    
+}
 
 
 class CommentHandler extends Component {
     
-
+    
     render(){
         
         

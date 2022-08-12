@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import data from "../../database/data"
 import {Route,Routes,Navigate} from "react-router-dom"
 import Home from "./home"
 import Blogs from "./blogs"
@@ -11,11 +10,10 @@ import Header from "../header/nav"
 import Product from "./product"
 import Form from "./form"
 import ContactUs from "./contactUs"
-import Comments from "../../database/comments"
 import Loader from "./loader"
 import { connect } from "react-redux"
 import { loader } from "../../redux/actionCreator"
-
+import comments from "../../database/comments"
 const propsFormRedux=(state)=>{
         return{
             data:state.data
@@ -24,19 +22,20 @@ const propsFormRedux=(state)=>{
 
 
 const setDispatch=(dispatch)=>({
-    loader:()=>dispatch(loader())
+    loader:()=>dispatch(loader()),
+    
 })
 class Body extends Component {
     
     state = {
-        data: data,
-        comments:Comments,
+       
+        comments:comments,
         clicked: null,
         productItemHover:false
     }
     
     clickedfunc=(e,i)=>{
-        let item =this.state.data[i]
+        let item =this.props.data[i]
         this.setState({ clicked : item})
 
         
@@ -51,7 +50,7 @@ class Body extends Component {
     render() {
 
         
-        
+        console.log(this.props.data.data[0])
         return(
             <>
             <Header/>
@@ -66,14 +65,20 @@ class Body extends Component {
                 
                 <div className="product">
                 {this.props.data.loading==true? <Loader/>:this.props.data.data.map((a,i)=>{
-                    return(
+                    
+                        return a.map((a,i)=>{
+                            return(
                         
-                        <div  key={a.id} >
-                        <Products a={a}func={(e)=>this.clickedfunc(e,i)} data={this.state.data}/>
+                                <div  key={a.id} >
+                                <Products a={a} func={(e)=>this.clickedfunc(e,i)} data={this.state.data}/>
+                                
+                                </div>
+                                
+                            )
+                        })
                         
-                        </div>
-                        
-                    )
+                    
+                    
                 })
                 
                 

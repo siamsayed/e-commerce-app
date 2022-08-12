@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import {Form, Input,Button} from "reactstrap"
 import {connect} from "react-redux"
-import data from "../../database/data"
 import {commentHandler} from "../../redux/actionTypes"
-import {addComments,loader} from "../../redux/actionCreator"
+import {addComments} from "../../redux/actionCreator"
 
 
 
 
 let setDispatch=(dispatch)=>{
     return{
-        addComments:(productId,author,comment,rating)=>dispatch(addComments(productId,author,comment,rating)),
-        
+        addComments:(productId,author,comment,rating)=>dispatch(addComments(productId,author,comment,rating))
     }
 }
 class CommentForm extends Component {

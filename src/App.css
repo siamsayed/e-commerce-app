@@ -37,6 +37,12 @@ text-align: center;
     
     
 }
+.image{
+    height:340px;
+    width:453px;
+    object-fit: cover;
+    border:1px solid gray
+}
 .comment{
     margin-bottom: 4px;;
     border-radius: 3px;

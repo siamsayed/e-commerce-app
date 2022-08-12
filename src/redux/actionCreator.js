@@ -1,5 +1,7 @@
 import * as actionTypes from "./actionTypes"
-import  data from "../database/data"
+
+import axios from "axios"
+
 
 
 export const addComments=(productId,author,comment,rating)=>({
@@ -17,30 +19,15 @@ export const addComments=(productId,author,comment,rating)=>({
 })
 
 
+export const fetch=(data,comments)=>({
+        type:actionTypes.fetchData,
+        payload:{
+            data:this.props.data,
+            comments:this.props.comments
+        },
+        
 
-
-
-
-// export const pageLoading=()=>({
-//     type:actionTypes.pageLoading,
-    
-// })
-// export const pageLoaded=(data)=>({
-//     type:actionTypes.pageLoaded,
-//     payload:data
-// })
-
-
-// export const loader=()=>{
-//     return dispatch=>{
-//         dispatch(pageLoading())
-
-//         setTimeout(()=>{
-//             dispatch(pageLoaded(data))
-//         },2000)
-//     }
-// }
-
+})
 
 
 export const pageloading=()=>({
@@ -56,13 +43,17 @@ export const pageLoaded=(data)=>({
 
 
 
+
+
 export const loader=()=>{
     return dispatch=>{
         dispatch(pageloading())
 
 
-        setTimeout(() => {
-            dispatch(pageLoaded(data))
-        }, 2000);
+        axios.get("http://localhost:4000/data")
+        .then(res=>res.data)
+        .then(data=>dispatch(pageLoaded(data)))
+        .catch(err=>console.log(err.message))
     }
 }
+

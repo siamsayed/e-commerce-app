@@ -4,7 +4,7 @@ import {Modal,Button,ModalBody,ModalFooter} from "reactstrap"
 import CommentForm from "./commentForm"
 import {connect} from "react-redux"
 import CommentHandler from "./commentHandler"
-import { buySuccess } from "../../redux/actionTypes"
+import {baseUrl} from "../../redux/baseUrl"
 let propsFormRedux=(state)=>{
   return{
       comments:state.comments
@@ -51,7 +51,7 @@ class Products extends Component{
                         <ModalBody>
                             <h1>{this.props.a.product_name}</h1>
                             <p>{this.props.a.description}</p>
-                            
+                            <img className="image"src={baseUrl+"/"+this.props.a.image}alt={this.props.a.image}/>
 
                             <p>Price : {this.props.a.price} USD</p>
                             <CommentForm productId={this.props.a}/>

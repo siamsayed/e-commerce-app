@@ -1,6 +1,5 @@
 import React,{Component}from "react"
 import {NavLink,Link} from "react-router-dom"
-import {AiOutlineBars} from "react-icons/ai"
 import {VscSignIn} from "react-icons/vsc"
 import {MdExpandMore}from "react-icons/md"
 import {BiConversation} from "react-icons/bi"
@@ -39,7 +38,7 @@ class Header extends Component{
       <Link to="/blogs"><div className="item"onClick={this.onclickChange}><BiConversation className="icon"/> Blogs</div></Link>
       <Link to="/about"><div className="item"onClick={this.onclickChange}><MdExpandMore  className="icon"/> About</div></Link>
       <Link to="signin-login"><div className="item"onClick={this.onclickChange}><VscSignIn className="icon"/>SignIn/LogIn</div></Link>
-      
+      <Link to="/contact-us"><div className="item"onClick={this.onclickChange}><VscSignIn className="icon"/>Contact Us</div></Link>
     </Collapse>
     
   </Navbar>
